@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SnapBuy - Admin Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            font-family: 'Inter', sans-serif;
+            background-color: #f1f3f5;
+        }
+
+        .navbar {
+            z-index: 1050;
+        }
+
+        .navbar .nav-item img {
+            object-fit: cover;
+            border: 1px solid #dee2e6;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 56px;
+            left: 0;
+            width: 240px;
+            height: calc(100vh - 56px);
+            background-color: #343a40;
+            color: white;
+            padding-top: 20px;
+            overflow-y: auto;
+            transition: transform 0.3s ease;
+            z-index: 1000;
+        }
+
+        .sidebar a {
+            color: white;
+            display: block;
+            padding: 10px 20px;
+            text-decoration: none;
+            transition: background-color 0.3s ease, padding-left 0.3s ease;
+        }
+
+        .sidebar a:hover {
+            padding-left: 28px;
+        }
+
+        .sidebar a.active {
+            background-color: #212529;
+            font-weight: bold;
+            border-left: 4px solid #0d6efd;
+        }
+
+        .main-content {
+            margin-left: 240px;
+            padding: 30px;
+            background-color: #f8f9fa;
+            transition: margin-left 0.3s ease;
+        }
+
+        /* Toggle hide sidebar */
+        .sidebar.collapsed {
+            transform: translateX(-100%);
+        }
+
+        .main-content.full {
+            margin-left: 0;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+
+            .sidebar.show {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+        }
+
+        .toggle-btn {
+            position: fixed;
+            top: 65px;
+            left: 10px;
+            z-index: 1100;
+            background-color: #343a40;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+        }
+
+        .social-icon {
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .social-icon:hover {
+            color: #ffc107;
+            transform: scale(1.2);
+        }
+    </style>
+</head>
+<body class="d-flex flex-column min-vh-100 bg-light">
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+    <div class="container-fluid">
+
+        <!-- Toggle Sidebar Button (bên trái logo) -->
+        <button class="btn btn-dark me-2" onclick="toggleSidebar()" title="Toggle Menu">
+            <i class="bi bi-list fs-4"></i>
+        </button>
+
+        <!-- Logo -->
+        <a class="navbar-brand d-flex align-items-center" href="{{ url_for('dashboard_page') }}">
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="SnapBuy Logo" style="height: 40px;" class="me-2">
+        </a>
+
+        <!-- Responsive menu collapse -->
+        <button class="navbar-toggler" type="button" onclick="toggleSidebarMobile()">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            {% if current_user.is_authenticated %}
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="navbarProfileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="https://ui-avatars.com/api/?name={{ current_user.username | urlencode }}&background=0d6efd&color=fff&bold=true" class="rounded-circle me-2" width="32" height="32" alt="Avatar">
+                            <span class="text-light">{{ current_user.username }}</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark" aria-labelledby="navbarProfileDropdown">
+                            <li><a class="dropdown-item" href="{{ url_for('admin_profile') }}"><i class="bi bi-person-circle me-2"></i>Profile</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="{{ url_for('logout') }}"><i class="bi bi-box-arrow-right me-2"></i>Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            {% endif %}
+        </div>
+    </div>
+</nav>
+
+<!-- Sidebar -->
+<div class="sidebar" id="sidebar">
+    <h5 class="px-3">Admin Menu</h5>
+    <a href="{{ url_for('item_list') }}" class="{% if 'item' in request.path %}active{% endif %}"><i class="bi bi-box-seam me-2"></i>Item</a>
+    <a href="{{ url_for('list_brands') }}" class="{% if 'brand' in request.path %}active{% endif %}"><i class="bi bi-bookmark-heart me-2"></i>Brand</a>
+    <a href="{{ url_for('list_tags') }}" class="{% if 'tag' in request.path %}active{% endif %}"><i class="bi bi-tag me-2"></i>Tag</a>
+    <a href="{{ url_for('manage_users') }}" class="{% if 'user' in request.path %}active{% endif %}"><i class="bi bi-people me-2"></i>User Management</a>
+    <a href="{{ url_for('category_list') }}" class="{% if 'category' in request.path %}active{% endif %}"><i class="bi bi-tags me-2"></i>Category</a>
+    <a href="#" class="{% if 'import' in request.path %}active{% endif %}"><i class="bi bi-upload me-2"></i>Import Data</a>
+    <a href="{{ url_for('analyze_page') }}" class="{% if 'analyze' in request.path %}active{% endif %}"><i class="bi bi-graph-up me-2"></i>Analyze</a>
+</div>
+
+<main class="flex-grow-1">
+<!-- Main Content -->
+<div class="main-content" id="mainContent">
+    <h2 class="text-center fw-bold mb-2" style="font-size: 2rem;">Welcome to Admin Dashboard</h2>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <div class="container mt-2">
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% endwith %}
+
+    <div class="row px-5 mb-4 text-white text-center">
+  <div class="col-md-3 mb-3">
+    <div class="p-4 rounded bg-primary shadow">
+      <h5>Sản phẩm</h5>
+      <h4>{{ total_items }}</h4>
+    </div>
+  </div>
+  <div class="col-md-3 mb-3">
+    <div class="p-4 rounded bg-success shadow">
+      <h5>Người dùng</h5>
+      <h4>{{ total_users }}</h4>
+    </div>
+  </div>
+  <div class="col-md-3 mb-3">
+    <div class="p-4 rounded bg-warning shadow">
+      <h5>Đơn hàng</h5>
+      <h4>{{ total_orders }}</h4>
+    </div>
+  </div>
+  <div class="col-md-3 mb-3">
+    <div class="p-4 rounded bg-danger shadow">
+      <h5>Đánh giá</h5>
+      <h4>{{ total_ratings }}</h4>
+    </div>
+  </div>
+  <div class="col-md-3 mb-3">
+    <div class="p-4 rounded bg-info shadow">
+      <h5>Danh mục</h5>
+      <h4>{{ total_categories }}</h4>
+    </div>
+  </div>
+        <div class="col-md-3 mb-3">
+    <div class="p-4 rounded bg-dark shadow">
+      <h5>Nhãn hàng</h5>
+      <h4>{{ total_brands }}</h4>
+    </div>
+  </div>
+        <div class="col-md-3 mb-3">
+    <div class="p-4 rounded bg-secondary shadow">
+      <h5>Nhãn</h5>
+      <h4>{{ total_tags }}</h4>
+    </div>
+  </div>
+</div>
+
+</div>
+    </main>
+
+<script>
+    function toggleSidebar() {
+        const sidebar = document.getElementById('sidebar');
+        const content = document.getElementById('mainContent');
+        sidebar.classList.toggle('collapsed');
+        content.classList.toggle('full');
+    }
+
+    function toggleSidebarMobile() {
+        const sidebar = document.getElementById('sidebar');
+        sidebar.classList.toggle('show');
+    }
+</script>
+
+    <main class="flex-fill" style="padding-bottom: 80px;">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+<footer class="bg-dark text-white pt-4 mt-auto border-top">
+  <div class="container">
+
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-3">
+      <div class="text-center text-md-start mb-2 mb-md-0">
+        <strong>Snapbuy</strong> &mdash; © 2025 All rights reserved.
+      </div>
+      <div class="d-flex justify-content-center gap-3">
+        <a href="https://github.com/tanloc04/DATN-AI" target="_blank" class="text-white social-icon">
+          <i class="bi bi-github fs-5"></i>
+        </a>
+        <a href="#" target="_blank" class="text-white social-icon">
+          <i class="bi bi-facebook fs-5"></i>
+        </a>
+        <a href="#" class="text-white social-icon">
+          <i class="bi bi-envelope-fill fs-5"></i>
+        </a>
+      </div>
+    </div>
+
+    <div class="row text-center text-md-start border-top pt-3">
+      <div class="col-md-4 mb-3">
+        <h6 class="text-uppercase">Liên hệ</h6>
+        <p class="mb-1"><i class="bi bi-person-fill me-2"></i>Nguyễn Tấn Lộc & Lê Hồ Thành Tài</p>
+        <p class="mb-1"><i class="bi bi-telephone-fill me-2"></i>0901 234 567</p>
+        <p class="mb-0"><i class="bi bi-geo-alt-fill me-2"></i>123 Đường Lê Lợi, Quận 1, TP.HCM</p>
+      </div>
+      <div class="col-md-4 mb-3">
+        <h6 class="text-uppercase">Email</h6>
+        <p class="mb-0"><i class="bi bi-envelope me-2"></i>lehothanhtai@gmail.com</p>
+          <p class="mb-0"><i class="bi bi-envelope me-2"></i>nguyentanloc@gmail.com</p>
+      </div>
+      <div class="col-md-4 mb-3">
+        <h6 class="text-uppercase">Giờ làm việc</h6>
+        <p class="mb-0"><i class="bi bi-clock me-2"></i>Thứ 2 - Thứ 6: 8h - 17h</p>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+</body>
+
+</html>

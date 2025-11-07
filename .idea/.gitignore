@@ -1,0 +1,71 @@
+# ========================
+# Các file của bạn (Your Files)
+# ========================
+/shelf/
+# File /workspace.xml của bạn nằm trong .idea/, đã được thêm bên dưới
+# Your /workspace.xml file is inside .idea/, which is included below
+
+# ========================
+# Môi trường ảo (Virtual Environments)
+# ========================
+venv/
+.venv/
+env/
+*.egg-info/
+
+# ========================
+# Python Bytecode & Artifacts
+# ========================
+__pycache__/
+*.py[cod]
+*.pyc
+*.pyo
+build/
+dist/
+*.spec
+
+# ========================
+# Flask (Flask Specific)
+# ========================
+# Thư mục chứa config, database local, v.v. không nên commit
+instance/
+# File chứa biến môi trường và key bí mật
+.env
+*.env
+.flaskenv
+
+# ========================
+# Cơ sở dữ liệu Local (Local Databases)
+# ========================
+# Dành cho SQLite
+*.sqlite
+*.sqlite3
+*.db
+*.db3
+
+# ========================
+# Cấu hình IDE & Editor (IDE & Editor Config)
+# ========================
+# PyCharm, IntelliJ (bao gồm cả file workspace.xml của bạn)
+.idea/
+# Visual Studio Code
+.vscode/
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# ========================
+# Kiểm thử & Coverage (Testing & Coverage)
+# ========================
+.pytest_cache/
+.coverage
+htmlcov/
+pytest-report.html
+
+# ========================
+# File hệ điều hành (OS / System Files)
+# ========================
+# macOS
+.DS_Store
+# Windows
+Thumbs.db
