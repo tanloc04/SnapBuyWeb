@@ -59,7 +59,10 @@ source venv/bin/activate
 ```
 
 ### 3. Cài đặt thư viện
+```bash
 pip install -r requirements.txt
-
+```
 ### 4. Chạy ứng dụng
+```bash
 python run.py
+```
