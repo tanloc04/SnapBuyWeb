@@ -1,0 +1,26 @@
+# --- PyCharm / IDE settings (QUAN TRỌNG) ---
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# --- Python ---
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# --- Virtual Environment ---
+venv/
+env/
+.env
+
+# --- Database ---
+*.db
+*.sqlite3
+# Nếu bạn muốn giữ db mẫu thì có thể bỏ dòng trên, nhưng thường data thật thì nên ignore
+# migrations/  <-- KHÔNG ignore thư mục này nhé, migration code cần được commit
+
+# --- OS generated files ---
+.DS_Store
+Thumbs.db
