@@ -10,7 +10,7 @@
 
 Để hiểu rõ hơn về kiến trúc hệ thống, quy trình nghiệp vụ và các thuật toán được sử dụng, bạn có thể xem chi tiết tại tài liệu dưới đây:
 
-👉 **[TẢI XUỐNG TÀI LIỆU CHI TIẾT DỰ ÁN (.PDF)](./docs/SnapBuyWeb_Document.pdf)**
+👉 **[TẢI XUỐNG TÀI LIỆU CHI TIẾT DỰ ÁN (.PDF)](./docs/SnapBuyWeb.pdf)**
 
 *(Lưu ý: File tài liệu chứa sơ đồ CSDL, Use Case và giải thích thuật toán gợi ý)*
 
