@@ -47,12 +47,16 @@ git clone [https://github.com/tanloc04/SnapBuyWeb.git](https://github.com/tanloc
 cd SnapBuyWeb
 ```
 ### 2. Tạo môi trường ảo (Virtual Environment)
-# Trên Windows
+**Trên Windows:**
+```bash
 python -m venv venv
 .\venv\Scripts\activate
-# Trên macOS/Linux
+```
+**Trên macOS/Linux:**
+```
 python3 -m venv venv
 source venv/bin/activate
+```
 
 ### 3. Cài đặt thư viện
 pip install -r requirements.txt
