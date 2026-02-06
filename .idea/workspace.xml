@@ -5,10 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7806073b-8eaf-4af2-abf5-27dd70269fed" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/instance/snapbuy.db" beforeDir="false" afterPath="$PROJECT_DIR$/instance/snapbuy.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/market/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/market/routes.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,7 +73,7 @@
       <workItem from="1762505379489" duration="318000" />
       <workItem from="1770288471678" duration="632000" />
       <workItem from="1770374014012" duration="2094000" />
-      <workItem from="1770376280191" duration="2852000" />
+      <workItem from="1770376280191" duration="2913000" />
     </task>
     <servers />
   </component>
