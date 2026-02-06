@@ -1,0 +1,14 @@
+alembic==1.18.3
+Flask==3.1.2
+flask_bcrypt==1.0.1
+flask_login==0.6.3
+flask_migrate==4.1.0
+flask_sqlalchemy==3.1.1
+flask_wtf==1.2.2
+numpy==1.26.4
+pandas==2.2.3
+scikit_learn==1.7.2
+SQLAlchemy==2.0.46
+surprise==0.1
+Werkzeug==3.1.5
+WTForms==3.2.1

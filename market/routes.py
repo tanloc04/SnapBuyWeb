@@ -408,22 +408,24 @@ def logout():
 def product_detail(item_id):
     item = Item.query.get_or_404(item_id)
 
-    recent_view = UserHistory.query.filter_by(
-        user_id=current_user.id,
-        item_id=item.id,
-        interaction_type='view'
-    ).order_by(UserHistory.timestamp.desc()).first()
-
-    now = datetime.utcnow()
-    if not recent_view or (now - recent_view.timestamp > timedelta(minutes=10)):
-        new_history = UserHistory(
+    if current_user.is_authenticated:
+        recent_view = UserHistory.query.filter_by(
             user_id=current_user.id,
             item_id=item.id,
             interaction_type='view',
-            timestamp=now
-        )
-        db.session.add(new_history)
-        db.session.commit()
+        ).order_by(UserHistory.timestamp.desc()).first()
+
+        now = datetime.utcnow()
+
+        if not recent_view or (now - recent_view.timestamp > timedelta(minutes=10)):
+            new_history = UserHistory(
+                user_id=current_user.id,
+                item_id=item.id,
+                interaction_type='view',
+                timestamp=now
+            )
+            db.session.add(new_history)
+            db.session.commit()
 
     viewed = session.get('viewed_items', [])
     if item_id in viewed:
