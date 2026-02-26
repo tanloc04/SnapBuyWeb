@@ -1,4 +1,4 @@
-# 🛒 SnapBuyWeb - E-commerce & Recommendation System
+# SnapBuyWeb - E-commerce & Recommendation System
 
 **SnapBuyWeb** là một nền tảng thương mại điện tử được xây dựng bằng **Python (Flask)**, tích hợp hệ thống gợi ý sản phẩm (Recommendation System) sử dụng Machine Learning để cá nhân hóa trải nghiệm người dùng.
 
@@ -6,17 +6,17 @@
 
 ---
 
-## 📄 Tài liệu dự án (Documentation)
+## Tài liệu dự án (Documentation)
 
 Để hiểu rõ hơn về kiến trúc hệ thống, quy trình nghiệp vụ và các thuật toán được sử dụng, bạn có thể xem chi tiết tại tài liệu dưới đây:
 
-👉 **[TẢI XUỐNG TÀI LIỆU CHI TIẾT DỰ ÁN (.PDF)](./docs/SnapBuyWeb.pdf)**
+**[TẢI XUỐNG TÀI LIỆU CHI TIẾT DỰ ÁN (.PDF)](./docs/SnapBuyWeb.pdf)**
 
 *(Lưu ý: File tài liệu chứa sơ đồ CSDL, Use Case và giải thích thuật toán gợi ý)*
 
 ---
 
-## ✨ Tính năng chính
+## Tính năng chính
 
 * **Quản lý người dùng:** Đăng ký, Đăng nhập, Quản lý hồ sơ.
 * **Mua sắm trực tuyến:** Xem danh sách sản phẩm, Chi tiết sản phẩm, Giỏ hàng.
@@ -28,7 +28,7 @@
 
 ---
 
-## 🛠 Công nghệ sử dụng
+## Công nghệ sử dụng
 
 * **Backend:** Python 3.10, Flask Framework.
 * **Database:** SQLite (thông qua SQLAlchemy ORM).
@@ -37,7 +37,7 @@
 
 ---
 
-## 🚀 Hướng dẫn cài đặt và chạy (Installation)
+## Hướng dẫn cài đặt và chạy (Installation)
 
 Làm theo các bước sau để chạy dự án trên máy của bạn:
 
