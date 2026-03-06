@@ -40,7 +40,7 @@
 ## Application UI (Các phần giao diện chính)
 
 [Home Page]()
-[Admin Dashboard]()
+[Admin Dashboard](https://github.com/tanloc04/SnapBuyWeb/blob/main/assests/snapbuy_admin_dashboard.gif)
 
 ---
 
