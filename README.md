@@ -37,6 +37,13 @@
 
 ---
 
+## Application UI (Các phần giao diện chính)
+
+[Home Page]()
+[Admin Dashboard]()
+
+---
+
 ## Hướng dẫn cài đặt và chạy (Installation)
 
 Làm theo các bước sau để chạy dự án trên máy của bạn:
